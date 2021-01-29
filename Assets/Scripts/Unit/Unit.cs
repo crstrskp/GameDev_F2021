@@ -50,6 +50,7 @@ public class Unit : MonoBehaviour
 
     private void SetTeamColor()
     {
+        if (!m_renderer) return; 
         switch(m_team)
         {
             case Team.Red:

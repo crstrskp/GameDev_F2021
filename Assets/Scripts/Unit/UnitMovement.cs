@@ -7,6 +7,8 @@ public class UnitMovement : MonoBehaviour
     private NavMeshAgent m_navMeshAgent;
     private Vector3 m_startPos;
     private bool m_headingTowardStartPos = false;
+
+    private Animator m_anim;
     [SerializeField] private float m_wanderRange = 15.0f;
     private Vector3 m_targetPos;
 
@@ -14,7 +16,13 @@ public class UnitMovement : MonoBehaviour
     {
         m_navMeshAgent = GetComponent<NavMeshAgent>();
         m_startPos = transform.position;
+        m_anim = GetComponentInChildren<Animator>();
     } 
+
+    private void LateUpdate()
+    {
+        m_anim.SetFloat("Speed", m_navMeshAgent.desiredVelocity.magnitude);
+    }
 
     public void MoveTo(Vector3 targetPosition) => m_navMeshAgent.SetDestination(targetPosition);
 
