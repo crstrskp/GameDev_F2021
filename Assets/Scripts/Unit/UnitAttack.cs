@@ -12,17 +12,18 @@ public class UnitAttack : MonoBehaviour
 
     private void Awake()
     {
-        m_anim = GetComponent<Animator>();
+        m_anim = GetComponentInChildren<Animator>();
     }
 
     public bool CanAttack() => m_canAttack;
     internal void Attack(GameObject target)
     {
-        Debug.Log("eh");
         m_canAttack = false;
         
         if (m_anim) m_anim.SetTrigger("Attack");
 
+        transform.LookAt(target.transform.position);
+        
         float dmg = CalculateDamage();
         target.GetComponent<Health>().AdjustHealth(-dmg);
 

@@ -31,7 +31,7 @@ public class UnitTargeting : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            var unit = col.transform.parent.GetComponent<Unit>();
+            var unit = col.GetComponent<Unit>();
             if (unit != null && unit.GetTeam() != m_unit.GetTeam()) // TODO: Store in var
             {
                 float dist = Vector3.Distance(transform.position, unit.transform.position);
